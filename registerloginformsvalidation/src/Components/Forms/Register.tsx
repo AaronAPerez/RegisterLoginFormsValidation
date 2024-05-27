@@ -102,7 +102,7 @@ const Register = () => {
                 />
               </div>
             </div>
-            <div className="pt-2 row">
+            <div className="pt-3 row">
               <div className="col">
                 <button className="my-3 btn btn-primary" type="submit">
                   Submit

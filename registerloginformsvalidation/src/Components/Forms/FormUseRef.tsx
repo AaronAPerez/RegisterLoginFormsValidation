@@ -18,7 +18,7 @@ const FormUseRef = () => {
     if(firstNameRef.current != null)
       person.firstName = firstNameRef.current.value;
     if(lastNameRef.current != null)
-      person.lastName = parseInt(lastNameRef.current.value);
+      person.lastName = lastNameRef.current.value;
     console.log(person);
   };
   return (
