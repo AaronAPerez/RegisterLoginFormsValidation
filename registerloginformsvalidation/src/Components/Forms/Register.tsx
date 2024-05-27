@@ -7,7 +7,7 @@ const Register = () => {
     lastName: "",
     email: "",
     password: "",
-    confirmpassword: "",
+    confirmPassword: "",
   });
 
   //create a helper function to handle our on submit from our form,

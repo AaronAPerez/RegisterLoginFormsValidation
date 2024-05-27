@@ -14,6 +14,8 @@ const schema = z.object({
   email: z
     .string()
     .email()
+    .toLowerCase()
+    .trim()
     .min(3, { message: "Email must be at least 3 characters."}),
   password: z
   .string()
@@ -24,7 +26,8 @@ const schema = z.object({
     })
     .refine((data) => data.password === data.confirmPassword, 
     {message: "Password fields do not match",
-    path: ["confirmPassword"]});
+    path: ["confirmPassword"]}
+  );
 
     // path: ["confirm"], // path of error
 

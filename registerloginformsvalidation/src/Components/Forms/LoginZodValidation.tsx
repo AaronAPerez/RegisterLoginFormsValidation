@@ -2,15 +2,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
+// // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
+// const passwordValidation = new RegExp(
+//     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+//   );
+  
+//   const validationSchema = z.object({
+//     email: z
+//       .string()
+//       .min(1, { message: 'Must have at least 1 character' })
+//       .email({
+//         message: 'Must be a valid email',
+//       }),
+//     password: z
+//       .string()
+//       .min(1, { message: 'Must have at least 1 character' })
+//       .regex(passwordValidation, {
+//         message: 'Your password is not valid',
+//       }),
+//   });
+
 
 const schema = z.object({
     email: z
       .string()
-      .email()
-      .min(3, { message: "Email must be at least 3 characters." }),
+      .toLowerCase()
+      .email(),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters." }),
+      .min(8, { message: "Password must be at least 8 characters" })
+      .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+    { message: "Required: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character" })
   });
   
   type FormData = z.infer<typeof schema>;

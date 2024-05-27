@@ -1,5 +1,7 @@
 body{
-  background-color: rgb(186, 186, 186);
+  /* background-color: rgb(186, 186, 186); */
+  background: rgb(29,33,69);
+  background: linear-gradient(90deg, rgba(29,33,69,1) 17%, rgba(110,126,131,1) 79%);
   line-height: 1.34;
 }
 
