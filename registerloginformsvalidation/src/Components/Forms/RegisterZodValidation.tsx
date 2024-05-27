@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
+
+
 const schema = z.object({
   firstName: z
     .string()
@@ -14,25 +16,60 @@ const schema = z.object({
     .email()
     .min(3, { message: "Email must be at least 3 characters."}),
   password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters."}),
+  .string()
+  .min(8, { message: "Password must be at least 8 characters."}),
   confirmPassword: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters."}),
-});
+  .string()
+  .min(8, { message: "Password must be at least 8 characters."}),
+    })
+    .refine((data) => data.password === data.confirmPassword, 
+    {message: "Password fields do not match",
+    path: ["confirmPassword"]});
 
-type Formdata = z.infer<typeof schema>;
+    // path: ["confirm"], // path of error
+
+    // .min(8, { message: "Password must be at least 8 characters."}),
+    //   confirmPassword: z
+    //     .string()
+    //     .min(8, { message: "Password must be at least 8 characters."}),
+    
+
+type FormData = z.infer<typeof schema>;
 
 // interface FormData {
 //     name: string,
 //     password: string
 // }
 
+
+// Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
+// const passwordValidation = new RegExp(
+  //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+  // );
+  
+  // const validationSchema = z.object({
+  //   email: z
+  //     .string()
+  //     .min(1, { message: 'Must have at least 1 character' })
+  //     .email({
+  //       message: 'Must be a valid email',
+  //     }),
+  //   password: z
+  //     .string()
+  //     .min(1, { message: 'Must have at least 1 character' })
+  //     .regex(passwordValidation, {
+  //       message: 'Your password is not valid',
+  //     }),
+  // });
+
+
+
+
 const RegisterZodValidation = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors , isValid },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   console.log(errors);
 

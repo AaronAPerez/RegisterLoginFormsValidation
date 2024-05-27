@@ -1,15 +1,15 @@
 import FormUseRef from './Components/Forms/FormUseRef'
-import FormValidationZod from './Components/Forms/FormValidationZod'
 import Login from './Components/Forms/Login'
 import ReactForms from './Components/Forms/ReactForms'
 import Register from './Components/Forms/Register'
+import LoginZodValidation from './Components/Forms/LoginZodValidation'
 import RegisterZodValidation from './Components/Forms/RegisterZodValidation'
 
 const App = () => {
   return (
     <>
-    {/* <RegisterZodValidation/> */}
-    <FormValidationZod/>
+    {/* <RegisterZodValidation/>  */}
+    <LoginZodValidation/>
     {/* <ReactForms/>
       <Login/>
       <FormUseRef/>  

@@ -9,7 +9,6 @@ body{
   border-top: 1px solid #dadde1;
   box-sizing: border-box;
   padding: 16px;
- 
   width: 432px;
   /* background-color: rgb(116, 116, 116);
   width: 431.998px;*/
@@ -24,6 +23,10 @@ body{
 .termsText{
   color: #777;
   font-size: 11px;
+}
+
+.placeholder{
+  color:#777
 }
 
 
