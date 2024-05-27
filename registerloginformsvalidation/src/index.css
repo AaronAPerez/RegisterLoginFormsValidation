@@ -4,18 +4,32 @@ body{
 }
 
 .formContainer{
-  background-color: rgb(116, 116, 116);
-  width: 431.998px;
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  border-top: 1px solid #dadde1;
+  box-sizing: border-box;
+  padding: 16px;
+ 
+  width: 432px;
+  /* background-color: rgb(116, 116, 116);
+  width: 431.998px;*/
   position: absolute;
   top: 35%;
-  left: 50%;
+  left: 50%; 
   transform: translate(-50%,-30%);
   padding: 10px 16px;
   border-radius: 10px;
 }
 
+.termsText{
+  color: #777;
+  font-size: 11px;
+}
+
+
 button{
   width: 100%;
+  font-size: 12px;
 }
 
  /* Set a style for the buttons*/  
