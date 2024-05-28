@@ -27,12 +27,12 @@ const schema = z.object({
     email: z
       .string()
       .toLowerCase()
+      .trim()
       .email(),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" })
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-    { message: "Required: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character" })
+    { message: "Password must be Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character" })
   });
   
   type FormData = z.infer<typeof schema>;
@@ -46,7 +46,7 @@ const LoginZodValidation = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: { errors },
       } = useForm<FormData>({ resolver: zodResolver(schema) });
       console.log(errors);
     

@@ -15,11 +15,12 @@ const schema = z.object({
     .string()
     .email()
     .toLowerCase()
-    .trim()
-    .min(3, { message: "Email must be at least 3 characters."}),
+    .trim(),
   password: z
   .string()
-  .min(8, { message: "Password must be at least 8 characters."}),
+  // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
+  .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+{ message: "Password must be Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character" }),
   confirmPassword: z
   .string()
   .min(8, { message: "Password must be at least 8 characters."}),
@@ -29,42 +30,8 @@ const schema = z.object({
     path: ["confirmPassword"]}
   );
 
-    // path: ["confirm"], // path of error
-
-    // .min(8, { message: "Password must be at least 8 characters."}),
-    //   confirmPassword: z
-    //     .string()
-    //     .min(8, { message: "Password must be at least 8 characters."}),
-    
 
 type FormData = z.infer<typeof schema>;
-
-// interface FormData {
-//     name: string,
-//     password: string
-// }
-
-
-// // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
-// const passwordValidation = new RegExp(
-//     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-//   );
-  
-//   const validationSchema = z.object({
-//     email: z
-//       .string()
-//       .min(1, { message: 'Must have at least 1 character' })
-//       .email({
-//         message: 'Must be a valid email',
-//       }),
-//     password: z
-//       .string()
-//       .min(1, { message: 'Must have at least 1 character' })
-//       .regex(passwordValidation, {
-//         message: 'Your password is not valid',
-//       }),
-//   });
-
 
 
 
@@ -72,7 +39,7 @@ const RegisterZodValidation = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors , isValid },
+    formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   console.log(errors);
 
