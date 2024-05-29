@@ -3,42 +3,39 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
 
-
-const schema = z.object({
-  firstName: z
-    .string()
-    .min(2, { message: "First Name must be at least 2 characters."}),
-  lastName: z
-    .string()
-    .min(2, { message: "Last Name must be at least 2 characters."}),
-  email: z
-    .string()
-    .email()
-    .toLowerCase()
-    .trim(),
-  password: z
-  .string()
-  // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
-  .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-{ message: "Password must be Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character" }),
-  confirmPassword: z
-  .string()
-  .min(8, { message: "Password must be at least 8 characters."}),
-    })
-    .refine((data) => data.password === data.confirmPassword, 
-    {message: "Password fields do not match",
-    path: ["confirmPassword"]}
-  );
-
+const schema = z
+  .object({
+    firstName: z
+      .string()
+      .min(1, { message: "Required: must be at least 2 characters" })
+      .max(30, { message: "First Name must be at less than 30 characters." }),
+    lastName: z
+      .string()
+      .min(2, { message: "Required: must be at least 2 characters" }),
+    email: z.string().email().trim().toLowerCase(),
+    password: z
+      .string()
+      // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
+      .min(8, { message: "Password must be at least 8 characters." })
+      .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/, {
+        message:
+          "Password must include  at least one uppercase letter, one lowercase letter, one number and one special character",
+      }),
+    confirmPassword: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters." }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password must match",
+    path: ["confirmPassword"],
+  })
 
 type FormData = z.infer<typeof schema>;
-
-
 
 const RegisterZodValidation = () => {
   const {
     register,
-    handleSubmit,
+    handleSubmit, 
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   console.log(errors);
@@ -46,6 +43,7 @@ const RegisterZodValidation = () => {
   const onHelpSubmit = (data: FieldValues) => {
     console.log(data);
   };
+
 
   return (
     <>
@@ -59,31 +57,32 @@ const RegisterZodValidation = () => {
           </div>
           <div className="row">
             <div className="col">
-              <label htmlFor="" className="form-label">
+              <label htmlFor="input" className="form-label">
                 {/* First Name */}
-              </label>
+                </label>
+              
               {/* Spread Operator make copy of person, set email to e.target.value*/}
               <input
                 {...register("firstName")}
                 id="firstName"
                 type="text"
-                autoComplete="text"
                 className="form-control"
                 placeholder="First Name"
               />
-              {errors.firstName && (
-                <p className="text-danger">{errors.firstName.message}</p>
-              )}
+              {errors.firstName &&
+                    <p className="text-danger">{errors.firstName.message}
+                </p>
+              }
+              
             </div>
             <div className="col">
-              <label htmlFor="" className="form-label">
+              <label htmlFor="" className="form-label is-invalid">
                 {/* Last Name */}
               </label>
               <input
                 {...register("lastName")}
                 id="lastName"
                 type="text"
-                autoComplete="text"
                 className="form-control"
                 placeholder="Last Name"
               />
@@ -120,7 +119,6 @@ const RegisterZodValidation = () => {
                 {...register("password")}
                 id="password"
                 type="password"
-                autoComplete="password"
                 className="form-control"
                 placeholder="Password"
               />
@@ -170,7 +168,7 @@ const RegisterZodValidation = () => {
         </div>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default RegisterZodValidation
+export default RegisterZodValidation;

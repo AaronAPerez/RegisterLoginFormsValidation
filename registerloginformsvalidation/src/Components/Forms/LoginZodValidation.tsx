@@ -2,33 +2,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
-// // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
-// const passwordValidation = new RegExp(
-//     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-//   );
-  
-//   const validationSchema = z.object({
-//     email: z
-//       .string()
-//       .min(1, { message: 'Must have at least 1 character' })
-//       .email({
-//         message: 'Must be a valid email',
-//       }),
-//     password: z
-//       .string()
-//       .min(1, { message: 'Must have at least 1 character' })
-//       .regex(passwordValidation, {
-//         message: 'Your password is not valid',
-//       }),
-//   });
-
 
 const schema = z.object({
     email: z
       .string()
-      .toLowerCase()
+      .email()
       .trim()
-      .email(),
+      .toLowerCase(),
     password: z
       .string()
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
@@ -36,11 +16,7 @@ const schema = z.object({
   });
   
   type FormData = z.infer<typeof schema>;
-  
-  // interface FormData {
-  //     name: string,
-  //     password: string
-  // }
+
 
 const LoginZodValidation = () => {
     const {
@@ -50,14 +26,15 @@ const LoginZodValidation = () => {
       } = useForm<FormData>({ resolver: zodResolver(schema) });
       console.log(errors);
     
-      const onHelpSubmit = (data: FieldValues) => {
+      const onSubmit = (data: FieldValues) => {
         console.log(data);
       };
+      
     
       return (
         <>
           <h1 className="text-center title">Login Form validation with Zod</h1>
-          <form onSubmit={handleSubmit(onHelpSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 formContainer">
               <div className="row">
                 <div className="col">
@@ -78,7 +55,7 @@ const LoginZodValidation = () => {
                       placeholder="Email"
                     />
                     {errors.email && (
-                      <p className="text-danger">{errors.email.message}</p>
+                      <p className="text-danger" id="form-control is-invalid">{errors.email.message}</p>
                     )}
                   </div>
                 </div>
