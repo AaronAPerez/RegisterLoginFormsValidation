@@ -123,7 +123,7 @@ const LoginZodValidation = () => {
             <div className="col">
               <a className="password">Forgot Password?</a>
               <p className="pt-4 fw-light">Not a member? Join Now</p>
-              <button className="mb-3 btn btn-success" type="submit">
+              <button className="mb-3 btn btn-success">
                 Create Account
               </button>
             </div>
