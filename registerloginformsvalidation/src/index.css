@@ -14,7 +14,7 @@ body{
   border-top: 1px solid #dadde1;
   box-sizing: border-box;
   padding: 16px;
-  width: 30rem;
+  width: 27rem;
   position: absolute;
   top: 35%;
   left: 50%; 
@@ -23,11 +23,11 @@ body{
   border-radius: 10px;
 }
 
-.form-control{
+/* .form-control{
   padding-right: 56px;
-}
+} */
 
-.termsText{
+.termsText, pa{
   color: #777;
   font-size: 11px;
 }
@@ -51,17 +51,22 @@ button:hover {
     opacity: 0.8;  
 }  
 
-input#password {
+/* input#password {
   background-position: 10px 10px; 
   background-repeat: no-repeat;
   block-size: calc(40px - 2px);
   grid-area: input;
   position: relative;
   box-shadow: inset 0 0 0 0 transparent;
-}
+  padding-right: 2rem;
+} */
 
 .inputWrapper {
   position: relative;
+}
+
+input{
+  padding-right: 2rem;
 }
 
 .showHidePassword {
@@ -71,12 +76,44 @@ input#password {
   transform: translateY(-50%);
   cursor: pointer;
   display: none;
+  transition: opacity 0.3s ease;
 }
+
+.showHidePassword:hover {
+  display: inline;
+}
+
+  /* background-color: #e74c3c;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  opacity: 0; */
 
 input + .showHidePassword{
-  display: inline-block;
+  display: none;
 }
 
+input:hover + .showHidePassword{
+  display: inline;
+}
+
+a{
+  cursor: pointer;
+}
+a:hover{
+  cursor: pointer;
+  opacity: 70%;
+  color: rgb(204, 95, 0);
+}
+
+input:hover .showHidePassword{
+  opacity: 1;
+}
 
 
 

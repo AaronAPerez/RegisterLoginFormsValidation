@@ -1,10 +1,12 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
-import { z } from "zod";
-import { LiaEyeSlashSolid } from "react-icons/lia";
-import { LiaEyeSolid } from "react-icons/lia";
+import { zodResolver } from "@hookform/resolvers/zod"; // zodResolver from @hookform/resolvers/zod for integrating Zod with react-hook-form
+import { useState } from "react"; // useState hook from React for state management
+import { FieldValues, useForm } from "react-hook-form"; // useForm hook and FieldValues type from react-hook-form for form handling
+import { z } from "zod"; // Zod library for schema validation
 
+import { LiaEyeSlashSolid } from "react-icons/lia"; // Icon componentS for showing/hiding the password
+import { LiaEyeSolid } from "react-icons/lia"; // 
+
+// Zod schema for validating the form fields
 const schema = z
   .object({
     firstName: z
@@ -13,7 +15,7 @@ const schema = z
     lastName: z
       .string()
       .min(2, { message: "Required: must be at least 2 characters" }),
-    email: z.string().email().trim().toLowerCase(),
+    email: z.string().email().trim().toLowerCase(), // Validate email format 
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters." })
@@ -27,41 +29,46 @@ const schema = z
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Required: Passwords must match",
-    path: ["confirmPassword"],
+    path: ["confirmPassword"], // Specify the path to the confirmPassword field for error handling
   });
 
+// Infer the type form data from the Zod schema
 type FormData = z.infer<typeof schema>;
 
 const RegisterZodValidation = () => {
+  // Use the useForm hook from react-hook-form and pass the Zod resolver
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
-  console.log(errors);
+  console.log(errors); // Log the errors
 
+  // Define the onSubmit function to handle form submission
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
+    console.log(data); // Log the form data
   };
 
+  // Use the useState hook to manage the visibility of the password field
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  return (
-    <>
-      <h1 className="text-center title">Register Form Validation with Zod</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3 formContainer">
-          <div className="pt-2 row">
-            <div className="col">
-              <h1 className="title">Sign Up</h1>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="firstName" className="form-label">
-                {/* First Name */}
+
+    return (
+     <>{/* Render the form */}
+       <h1 className="text-center title"></h1>
+       <form onSubmit={handleSubmit(onSubmit)}>
+         <div className="mb-3 formContainer">
+           <div className="pt-2 row">
+             <div className="col">
+               <h1 className="title">Sign Up</h1>
+             </div>
+           </div>
+           <div className="row">
+             <div className="col">
+               <label htmlFor="firstName" className="form-label">
+                 {/* First Name */}
               </label>
-              <input
+               <input
                 {...register("firstName")}
                 id="firstName"
                 type="text"
@@ -125,9 +132,9 @@ const RegisterZodValidation = () => {
                     style={{ display: "inline-block" }}
                   >
                     {passwordVisible ? (
-                      <LiaEyeSlashSolid size={20} />
+                      <LiaEyeSlashSolid size={22} />
                     ) : (
-                      <LiaEyeSolid size={20} />
+                      <LiaEyeSolid size={22} color="green"/>
                     )}
                   </span>
                 </div>
