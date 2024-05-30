@@ -2,7 +2,6 @@
 
 
 body{
-  /* background-color: rgb(186, 186, 186); */
   font-family: Roboto, Arial, sans-serif;
   background: rgb(29,33,69);
   background: linear-gradient(90deg, rgb(14, 97, 82) 17%, rgba(110,126,131,1) 79%);
@@ -14,16 +13,18 @@ body{
   border-radius: 0 0 8px 8px;
   border-top: 1px solid #dadde1;
   box-sizing: border-box;
-  padding: 16px;
-  width: 432px;
-  /* background-color: rgb(116, 116, 116);
-  width: 431.998px;*/
+  padding:16px;
+  width: 50%;
   position: absolute;
   top: 35%;
   left: 50%; 
   transform: translate(-50%,-30%);
   padding: 10px 16px;
   border-radius: 10px;
+}
+
+.form-control{
+  padding-right: 56px;
 }
 
 .termsText{
@@ -45,10 +46,46 @@ button{
   width: 100%;
   font-size: 12px;
 }
-
- /* Set a style for the buttons*/  
- /* Set a hover effect for the button*/  
+ 
 button:hover {  
     opacity: 0.8;  
 }  
+
+input#password {
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  block-size: calc(40px - 2px);
+  grid-area: input;
+  position: relative;
+  box-shadow: inset 0 0 0 0 transparent;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.showHidePassword {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+
+input + .showHidePassword{
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

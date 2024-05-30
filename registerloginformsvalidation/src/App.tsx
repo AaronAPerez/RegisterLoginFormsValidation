@@ -8,8 +8,8 @@ import RegisterZodValidation from './Components/Forms/RegisterZodValidation'
 const App = () => {
   return (
     <>
-    {/* <RegisterZodValidation/>  */}
     <LoginZodValidation/>
+    {/* <RegisterZodValidation/>  */}
     {/* <ReactForms/>
       <Login/>
       <FormUseRef/>  
