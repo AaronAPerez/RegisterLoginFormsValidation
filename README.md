@@ -13,7 +13,8 @@
 
 <b>GitHub:</b> https://github.com/AaronAPerez/RegisterLoginFormsValidation<br>
 
-<b>Reviewed by:</b> ____________ <br>
+<b>Reviewed by:</b> Alicia Spruell<br>
 
-<b>Comments:</b> ___________________________________________________ <br>
+<b>Comments:</b> Both registration and login forms have validation. I like how you added the extra button at the bottom for users to sign up on the registration page. VERY CREATIVE! I also like the "forgot password" addition on the login page. Everything works as it should and I really liked the gradient you used for your background.Overall, great job.<br>
+<b>ALL HAIL ZOD GOD!! <br>
 
