@@ -18,14 +18,14 @@ const schema = z
     email: z.string().email().trim().toLowerCase(), // Validate email format 
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters." })
-      .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/, {
-        message:
-          "Password must include at least one uppercase letter, one lowercase letter, one number and one special character",
-      }),
+    // Password requirements
+    .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/, {
+      message:
+        "Passwords must be at least 8 characters, include at least one uppercase letter, one lowercase letter, one number, and one special character",
+    }), 
     confirmPassword: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .min(8, { message: "Passwords must be at least 8 characters and match" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Required: Passwords must match",

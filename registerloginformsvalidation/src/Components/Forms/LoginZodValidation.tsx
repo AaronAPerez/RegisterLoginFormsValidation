@@ -15,11 +15,11 @@ const schema = z.object({
     .toLowerCase(), // Convert email to lowercase
   password: z
     .string()
-    .min(8, { message: "Password must be at least 8 characters." }) // Minimum password length
+    // Password requirements
     .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/, {
       message:
-        "Password must include at least one uppercase letter, one lowercase letter, one number and one special character",
-    }), // Password requirements
+        "Password must be at least 8 characters, include at least one uppercase letter, one lowercase letter, one number, and one special character",
+    }), 
 });
 
 // Infer the type of the form data from the Zod schema
